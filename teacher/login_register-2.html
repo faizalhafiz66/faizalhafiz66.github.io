@@ -1,0 +1,129 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Learn Center Flat Responsive Education Website Template | Contact :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta name="keywords" content="Bootstrap Responsive Templates, Iphone Compatible Templates, Smartphone Compatible Templates, Ipad Compatible Templates, Flat Responsive Templates"/>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<script src="js/jquery.min.js"></script>  
+<!---- start-smoth-scrolling---->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+
+<!---- start-smoth-scrolling---->
+<script charset="utf-8" src="js/apiomat.js"></script>
+<script charset="utf-8" src="js/jstorage.js"></script>
+</head>
+<body onload="init()">
+	<div class="banner1" id="home">
+		<div class="container">
+			<div class="header">
+			
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--start-contact-->
+	<div class="contact">
+		<div class="container">
+			<div class="contact-top">
+			</div>
+			<div class="contact-bottom">
+				<div class="col-md-12 ">
+					<h4>Login</h4>
+					<div class="contact-text">
+						<input id="l0" type="text"  placeholder="Email" />
+						<input id="l1" type="password"  placeholder="Password" />
+					</div>
+					<div class="contact-but">
+						<input type="submit" onclick="login()" />
+						<br>
+						<br>
+						<p id="statusL"></p>
+					</div>
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--end-contact-->
+	<!--start-footer-->
+	
+	<!--end-footer-->
+	
+<script>
+var dataLength_login = 0;
+var dataLength = 0;
+var buttonS = document.getElementById('buttonS');
+
+
+    function init() {
+        var user = new Apiomat.User();
+        user.setUserName("Admin");
+        user.setPassword("12345");
+        Apiomat.Datastore.configure(user);
+        var saveCB = {
+            onOk: function() {    
+            },
+            onError: function(error) {    
+            }
+        };
+        user.loadMe({
+            onOk: function() {
+            },
+            onError: function(error) {
+               
+                user.save(saveCB);
+            }
+        });
+    }
+
+
+   
+   
+	
+	
+	 function login() {
+	
+		var x = document.getElementById("l0").value;
+		var z = document.getElementById("l1").value;
+        var y = "email==" + '"' + x + '"' + " and " + "password==" + '"' + z + '"';
+		Apiomat.Teacher.getTeachers(y, {
+        onOk: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    dataLength_login = data.length;	
+                    console.log(data);					
+                } console.log(dataLength_login);
+				if (dataLength_login == 0){document.getElementById("statusL").innerHTML = '&nbsp;'+ "Mohon Ulangi, kombinasi Email dan password salah";} 
+				else {
+				dataLength_login=0;
+				$.jStorage.set("key_t1",x);
+                $.jStorage.set("key_t2",z);
+                window.location.href = "dashboard-2.html";
+				}
+            },
+            onError: function(error) {} });	
+    }
+
+
+</script>	
+</body>
+</html>
